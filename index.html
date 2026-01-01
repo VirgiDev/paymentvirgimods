@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><!-- NAMA WEB BISA DIGANTI --> Virgi Payment</title>
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+body { background: #0f172a; color: #fff; }
+header { background: #020617; padding: 20px; text-align: center; }
+header img { width: 70px; border-radius: 50%; }
+header h1 { margin: 10px 0 0; }
+.container { max-width: 500px; margin: 50px auto; padding: 20px; }
+.card { background: #020617; border-radius: 12px; padding: 15px; margin-bottom: 20px; }
+.card h2 { font-size: 18px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+.product { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #1e293b; }
+.product:last-child { border-bottom: none; }
+.payment-box { background: #020617; padding: 12px; border-radius: 10px; margin-top: 10px; }
+.copy-btn { background: #2563eb; border: none; padding: 8px 12px; border-radius: 8px; color: #fff; cursor: pointer; margin-top: 8px; }
+.copy-btn:hover { background: #1d4ed8; }
+.qris { text-align: center; }
+.qris img { width: 200px; margin-top: 10px; border-radius: 10px; }
+input, button { width: 100%; padding: 12px; border-radius: 10px; border: none; margin-top: 10px; }
+button.submit { background: #22c55e; color: #000; font-weight: bold; cursor: pointer; }
+.success { display: none; background: #16a34a; padding: 15px; border-radius: 10px; text-align: center; margin-top: 15px; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <!-- LOGO BISA DIGANTI -->
+  <img id="logo" src="https://i.imgur.com/8Km9tLL.png" alt="Logo">
+  <h1 id="webName">Virgi Payment</h1>
+</header>
+
+<div class="container">
+
+  <!-- PRODUK -->
+  <div class="card" id="productCard">
+    <h2>📦 Produk</h2>
+    <!-- LIST PRODUK BISA DIGANTI -->
+    <div class="product"><span class="productName">Premium Script</span><span class="productPrice">Rp 25.000</span></div>
+    <div class="product"><span class="productName">Admin Panel</span><span class="productPrice">Rp 50.000</span></div>
+  </div>
+
+  <!-- PEMBAYARAN -->
+  <div class="card">
+    <h2>💳 Pembayaran</h2>
+
+    <div class="payment-box">
+      <b id="paymentMethodLabel">DANA / OVO / GOPAY</b>
+      <p id="paymentNumber">0857xxxxxxxx</p>
+      <button class="copy-btn" onclick="copyText()">Salin Nomor</button>
+    </div>
+
+    <div class="payment-box qris">
+      <b id="qrisLabel">QRIS</b>
+      <img id="qrisImage" src="https://i.imgur.com/5KQ0K1E.png" alt="QRIS">
+    </div>
+  </div>
+
+  <!-- KONFIRMASI -->
+  <div class="card">
+    <h2 id="confirmLabel">🧾 Konfirmasi</h2>
+
+    <input type="text" id="nama" placeholder="Nama Pengirim" required>
+
+    <button class="submit" onclick="submitPay()" id="submitBtn">Saya Sudah Bayar</button>
+
+    <div class="success" id="success">
+      ✅ Pembayaran sedang diproses
+    </div>
+  </div>
+
+</div>
+
+<script>
+// SALIN NOMOR
+function copyText() {
+  const text = document.getElementById("paymentNumber").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Nomor berhasil disalin!");
+}
+
+// KONFIRMASI BAYAR
+function submitPay() {
+  const nama = document.getElementById("nama").value;
+  if (!nama) return alert("Masukkan nama terlebih dahulu!");
+  document.getElementById("success").style.display = "block";
+  console.log({ nama: nama, status: "Menunggu Konfirmasi" });
+}
+
+// ===== CONTOH: SEMUA YANG BISA DIGANTI =====
+// GANTI LOGO
+// document.getElementById("logo").src = "URL_LOGO_BARU";
+
+// GANTI NAMA WEB
+// document.getElementById("webName").innerText = "NamaWebBaru";
+
+// GANTI LIST PRODUK
+/*
+let products = [
+  {name:"Produk 1", price:"Rp 10.000"},
+  {name:"Produk 2", price:"Rp 20.000"}
+];
+const productCard = document.getElementById("productCard");
+productCard.innerHTML = '<h2>📦 Produk</h2>';
+products.forEach(p => {
+  productCard.innerHTML += `<div class="product"><span class="productName">${p.name}</span><span class="productPrice">${p.price}</span></div>`;
+});
+*/
+
+// GANTI NOMOR PEMBAYARAN
+// document.getElementById("paymentNumber").innerText = "08123456789";
+
+// GANTI LABEL METODE PEMBAYARAN
+// document.getElementById("paymentMethodLabel").innerText = "OVO / DANA";
+
+// GANTI QRIS
+// document.getElementById("qrisLabel").innerText = "QRIS Virgi";
+// document.getElementById("qrisImage").src = "URL_QR_BARU";
+
+// GANTI TEXT KONFIRMASI / BUTTON
+// document.getElementById("confirmLabel").innerText = "Konfirmasi Pembayaran";
+// document.getElementById("submitBtn").innerText = "Sudah Bayar";
+</script>
+
+</body>
+</html>
